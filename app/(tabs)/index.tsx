@@ -6,6 +6,8 @@ import Carousel from 'react-native-reanimated-carousel';
 
 export default function HomeScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
+    const transactionOpacity = useRef(new Animated.Value(1)).current;
+    const currencyTitleOpacity = useRef(new Animated.Value(1)).current; // New Animated.Value for currencyTitle
 
     // Animate the translateY to move the swiper up as the user scrolls
     const swiperTranslateY = scrollY.interpolate({
@@ -64,6 +66,37 @@ export default function HomeScreen() {
         updateCurrentTransactions(index);
     };
 
+    const fadeOutTransactionContainer = () => {
+        // Fade out the transaction container and currency title
+        Animated.parallel([
+            Animated.timing(transactionOpacity, {
+                toValue: 0,
+                duration: 300,
+                useNativeDriver: true,
+            }),
+            Animated.timing(currencyTitleOpacity, {
+                toValue: 0,
+                duration: 300,
+                useNativeDriver: true,
+            })
+        ]).start();
+    };
+
+    const fadeInTransactionContainer = () => {
+        // Fade in the transaction container and currency title
+        Animated.parallel([
+            Animated.timing(transactionOpacity, {
+                toValue: 1,
+                duration: 300,
+                useNativeDriver: true,
+            }),
+            Animated.timing(currencyTitleOpacity, {
+                toValue: 1,
+                duration: 300,
+                useNativeDriver: true,
+            })
+        ]).start();
+    };
 
     return (
         <View style={styles.container}>
@@ -72,9 +105,9 @@ export default function HomeScreen() {
                 <TouchableOpacity style={styles.menuButton}>
                     <ThemedText style={styles.buttonText}>C</ThemedText>
                 </TouchableOpacity>
-                <ThemedText type={"subtitle"} style={styles.currencyTitle}>
+                <Animated.Text style={[styles.currencyTitle, { opacity: currencyTitleOpacity }]}>
                     {currentCurrency} - {currencyFullNames[currentCurrency]}
-                </ThemedText>
+                </Animated.Text>
                 <TouchableOpacity style={styles.menuButton}>
                     <ThemedText style={styles.buttonText}>A</ThemedText>
                 </TouchableOpacity>
@@ -101,6 +134,8 @@ export default function HomeScreen() {
                         parallaxScrollingOffset: 80,
                     }}
                     onSnapToItem={handleSnapToItem}
+                    onScrollBegin={fadeOutTransactionContainer}
+                    onScrollEnd={fadeInTransactionContainer}
                     renderItem={({ item }) => (
                         <View style={styles.swiper}>
                             <View style={styles.slide}>
@@ -145,7 +180,7 @@ export default function HomeScreen() {
                 {currentTransactions.map((transaction, index) => {
                     const isPositive = transaction.amount.startsWith('+');
                     return (
-                        <ThemedView key={index} style={styles.transactionContainer}>
+                        <Animated.View key={index} style={[styles.transactionContainer, { opacity: transactionOpacity }]}>
                             <ThemedText type="subtitle" style={styles.transactionDate}>{transaction.date}</ThemedText>
                             <ThemedView style={styles.transactionBox}>
                                 <ThemedText type="defaultSemiBold" style={styles.transactionDescription}>
@@ -161,7 +196,7 @@ export default function HomeScreen() {
                                     {transaction.amount}
                                 </ThemedText>
                             </ThemedView>
-                        </ThemedView>
+                        </Animated.View>
                     );
                 })}
             </Animated.ScrollView>

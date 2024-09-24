@@ -1,0 +1,1 @@
+export type currencyCode = 'GBP' | 'EUR' | 'USD';

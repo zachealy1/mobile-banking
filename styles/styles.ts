@@ -1,0 +1,143 @@
+import { StyleSheet } from 'react-native';
+
+export default StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+        marginHorizontal: 2,
+    },
+    menuContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        height: 120,  // Increase the height to include the status bar area
+        zIndex: 2,
+        backgroundColor: '#ffffff',
+        paddingTop: 60,  // Add padding to account for the status bar (adjust if needed)
+    },
+    animatedBorder: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 1,
+        backgroundColor: '#ccc',  // The border color
+    },
+    menuButton: {
+        backgroundColor: '#007BFF',
+        paddingVertical: 12,
+        width: 44,
+        height: 44,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8,
+    },
+    currencyTitle: {
+        fontSize: 18,
+        marginTop: 10,
+        fontWeight: 'bold',
+        color: '#000',
+        textAlign: 'center',
+        flex: 1,
+    },
+    swiperContainer: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        height: 180,
+        marginTop: 80,
+        marginBottom: 180,
+        zIndex: 1,
+    },
+    swiper: {
+        height: 190,
+        marginBottom: 12,
+        marginTop: 8,
+    },
+    slide: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9DD6EB',
+        marginHorizontal: 20,
+        marginVertical: 28,
+        padding: 8,
+        overflow: 'hidden',
+    },
+    slideText: {
+        fontSize: 36,
+        fontWeight: 'bold',
+        color: '#fff',
+        textAlign: 'center',
+        width: '90%',
+        lineHeight: 40,
+    },
+    contentContainer: {
+        flexGrow: 1,
+        padding: 16,
+        paddingTop: 250,  // This padding ensures content starts after the swiperContainer height
+        backgroundColor: '#ffffff',
+        paddingBottom: 0,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginVertical: 16,
+    },
+    button: {
+        backgroundColor: '#007BFF',
+        paddingVertical: 12,
+        width: 165,
+        alignItems: 'center',
+        borderRadius: 8,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
+    },
+    transactionsHeader: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000',
+        marginBottom: 16,
+    },
+    transactionContainer: {
+        marginBottom: 16,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 8,
+        padding: 12,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    transactionBox: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        backgroundColor: '#ffffff',
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    transactionDescription: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#000',
+    },
+    transactionAmount: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#007BFF',
+    },
+    transactionDate: {
+        fontSize: 14,
+        color: '#888',
+        marginBottom: 8,
+    },
+});

@@ -63,3 +63,41 @@ export const currencyFullNames = {
     'EUR': 'Euros',
     'USD': 'US Dollars',
 };
+
+export const statementsData = [
+    // USD Statements
+    { id: '1', date: '2024-11-01', description: 'Statement for November 2024', clicked: false, currency: 'USD' },
+    { id: '2', date: '2024-10-01', description: 'Statement for October 2024', clicked: false, currency: 'USD' },
+    { id: '3', date: '2024-09-01', description: 'Statement for September 2024', clicked: false, currency: 'USD' },
+    { id: '4', date: '2024-08-01', description: 'Statement for August 2024', clicked: false, currency: 'USD' },
+    { id: '5', date: '2024-07-01', description: 'Statement for July 2024', clicked: false, currency: 'USD' },
+    { id: '6', date: '2024-06-01', description: 'Statement for June 2024', clicked: false, currency: 'USD' },
+
+    // EUR Statements
+    { id: '7', date: '2024-11-01', description: 'Statement for November 2024', clicked: false, currency: 'EUR' },
+    { id: '8', date: '2024-10-01', description: 'Statement for October 2024', clicked: false, currency: 'EUR' },
+    { id: '9', date: '2024-09-01', description: 'Statement for September 2024', clicked: false, currency: 'EUR' },
+    { id: '10', date: '2024-08-01', description: 'Statement for August 2024', clicked: false, currency: 'EUR' },
+    { id: '11', date: '2024-07-01', description: 'Statement for July 2024', clicked: false, currency: 'EUR' },
+    { id: '12', date: '2024-06-01', description: 'Statement for June 2024', clicked: false, currency: 'EUR' },
+
+    // GBP Statements
+    { id: '13', date: '2024-11-01', description: 'Statement for November 2024', clicked: false, currency: 'GBP' },
+    { id: '14', date: '2024-10-01', description: 'Statement for October 2024', clicked: false, currency: 'GBP' },
+    { id: '15', date: '2024-09-01', description: 'Statement for September 2024', clicked: false, currency: 'GBP' },
+    { id: '16', date: '2024-08-01', description: 'Statement for August 2024', clicked: false, currency: 'GBP' },
+    { id: '17', date: '2024-07-01', description: 'Statement for July 2024', clicked: false, currency: 'GBP' },
+    { id: '18', date: '2024-06-01', description: 'Statement for June 2024', clicked: false, currency: 'GBP' },
+
+    // Additional USD, EUR, and GBP statements for previous years
+    { id: '19', date: '2023-12-01', description: 'Statement for December 2023', clicked: false, currency: 'USD' },
+    { id: '20', date: '2023-11-01', description: 'Statement for November 2023', clicked: false, currency: 'EUR' },
+    { id: '21', date: '2023-10-01', description: 'Statement for October 2023', clicked: false, currency: 'GBP' },
+    { id: '22', date: '2023-09-01', description: 'Statement for September 2023', clicked: false, currency: 'USD' },
+    { id: '23', date: '2023-08-01', description: 'Statement for August 2023', clicked: false, currency: 'EUR' },
+    { id: '24', date: '2023-07-01', description: 'Statement for July 2023', clicked: false, currency: 'GBP' },
+    { id: '25', date: '2023-06-01', description: 'Statement for June 2023', clicked: false, currency: 'USD' },
+    { id: '26', date: '2023-05-01', description: 'Statement for May 2023', clicked: false, currency: 'EUR' },
+    { id: '27', date: '2023-04-01', description: 'Statement for April 2023', clicked: false, currency: 'GBP' },
+];
+

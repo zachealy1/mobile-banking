@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        marginVertical: 16,
+        marginVertical: 25,
     },
     button: {
         backgroundColor: '#007BFF',

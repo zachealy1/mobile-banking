@@ -1,70 +1,104 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, View, Animated, TextInput } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import MenuContainer from "@/components/Menu";
+import StatementsList from "@/components/StatementList";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 
 export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
-  );
+    const statementTitleOpacity = useRef(new Animated.Value(1)).current;
+    const searchBorderOpacity = useRef(new Animated.Value(1)).current;
+    const menuBorderOpacity = useRef(new Animated.Value(0)).current;
+    const statementOpacity = useRef(new Animated.Value(1)).current;
+    const scrollY = useRef(new Animated.Value(0)).current;
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const { handleScroll } = useScrollAnimation(searchBorderOpacity);
+
+    return (
+        <View style={styles.container}>
+            {/* Menu Container */}
+            <MenuContainer
+                titleOpacity={statementTitleOpacity}
+                title={"Statements"}
+                borderOpacity={menuBorderOpacity}
+                onChatPress={handleChatPress}
+                onAccountPress={handleAccountPress}
+            />
+
+            <View style={styles.searchContainer}>
+                {/* Search Box Below Menu Container */}
+                <TextInput
+                    style={styles.searchBox}
+                    placeholder="Search by date, currency, or ID"
+                    placeholderTextColor="#999"
+                    value={searchTerm}
+                    onChangeText={setSearchTerm}
+                />
+
+                {/* Animated border */}
+                <Animated.View style={[styles.animatedBorder, { opacity: searchBorderOpacity }]} />
+            </View>
+
+            <Animated.ScrollView
+                contentContainerStyle={styles.contentContainer}
+                onScroll={Animated.event(
+                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    {
+                        useNativeDriver: true,
+                        listener: handleScroll
+                    }
+                )}
+                scrollEventThrottle={10}
+                showsVerticalScrollIndicator={false}
+            >
+                <StatementsList
+                    statementOpacity={statementOpacity}
+                    searchTerm={searchTerm}
+                />
+            </Animated.ScrollView>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+    },
+    searchContainer: {
+        flex: 1,
+        marginBottom: 170,
+        position: 'relative',
+        backgroundColor: '#ffffff',
+    },
+    searchBox: {
+        height: 40,
+        borderColor: '#ddd', // Light border color for subtlety
+        borderWidth: 1,
+        borderRadius: 12, // Increased border radius for softer look
+        marginTop: 110,
+        paddingHorizontal: 12,
+        marginHorizontal: 16,
+        marginVertical: 15, // Consistent spacing
+        backgroundColor: '#f5f5f5', // Light background to blend with the page
+        color: '#333', // Text color for readability
+        fontSize: 16, // Slightly larger font for consistency with other text
+    },
+    animatedBorder: {
+        position: 'absolute',
+        top: 169,
+        left: 0,
+        right: 0,
+        height: 1,
+        zIndex: 1,
+        backgroundColor: '#ccc',  // Border color
+    },
+    contentContainer: {
+        flexGrow: 1,
+        padding: 16,
+        paddingTop: 10,
+        backgroundColor: '#ffffff',
+    },
 });

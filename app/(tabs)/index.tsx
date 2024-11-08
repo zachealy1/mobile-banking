@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
-import { View, Animated, Dimensions, NativeSyntheticEvent, NativeScrollEvent } from 'react-native';
-import { ThemedText } from '@/components/ThemedText';
+import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
+import {View, Animated} from 'react-native';
+import {ThemedText} from '@/components/ThemedText';
 import SwiperContainer from '@/components/Carousel';
 import MenuContainer from '@/components/Menu';
 import HomeTabButtonsContainer from '@/components/HomeTabButtons';
 import TransactionList from '@/components/TransactionList';
-import { transactionsItems, currencyFullNames, currencyItems } from '@/constants/Data';
-import { currencyCode } from '@/types/currencyCode';
-import { StyleSheet } from 'react-native';
+import {transactionsItems, currencyFullNames, currencyItems} from '@/constants/Data';
+import {currencyCode} from '@/types/currencyCode';
+import {StyleSheet} from 'react-native';
+import {useScrollAnimation} from "@/hooks/useScrollAnimation";
+import {handleAccountPress, handleChatPress} from "@/utils/eventHandlers";
 
 export default function HomeScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
@@ -21,36 +23,13 @@ export default function HomeScreen() {
         extrapolate: 'clamp',
     }), [scrollY]);
 
-    const width = Dimensions.get('window').width;
-
     const [currentCurrency, setCurrentCurrency] = useState<currencyCode>('GBP');
     const [currentTransactions, setCurrentTransactions] = useState(transactionsItems['GBP']);
-    const [isScrolled, setIsScrolled] = useState(false);
     const [filter, setFilter] = useState<'all' | 'incoming' | 'outgoing'>('all'); // Add filter state
 
     const borderOpacity = useRef(new Animated.Value(0)).current;
 
-    const handleScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-        const scrollOffsetY = event.nativeEvent.contentOffset.y;
-
-        if (scrollOffsetY > 10 && !isScrolled) {
-            setIsScrolled(true);
-
-            Animated.timing(borderOpacity, {
-                toValue: 1,
-                duration: 300,
-                useNativeDriver: true,
-            }).start();
-        } else if (scrollOffsetY <= 10 && isScrolled) {
-            setIsScrolled(false);
-
-            Animated.timing(borderOpacity, {
-                toValue: 0,
-                duration: 300,
-                useNativeDriver: true,
-            }).start();
-        }
-    }, [isScrolled, borderOpacity]);
+    const {handleScroll} = useScrollAnimation(borderOpacity);
 
     const updateCurrentCurrency = useCallback((index: number) => {
         const selectedCurrency = currencyItems[index].value as currencyCode;
@@ -120,22 +99,14 @@ export default function HomeScreen() {
         setFilter(prevFilter => prevFilter === 'outgoing' ? 'all' : 'outgoing');
     };
 
-    const handleChatPress = () => {
-        console.log('Chat');
-    };
-
-    const handleAccountPress = () => {
-        console.log('Account');
-    };
-
     return (
         <View style={styles.container}>
             <MenuContainer
-                currencyTitleOpacity={currencyTitleOpacity}
-                currentCurrency={currentCurrency}
+                titleOpacity={currencyTitleOpacity}
+                title={`${currentCurrency} - ${currencyFullNames[currentCurrency as keyof typeof currencyFullNames]}`}
                 borderOpacity={borderOpacity}
-                chat={handleChatPress}
-                account={handleAccountPress}
+                onChatPress={handleChatPress}
+                onAccountPress={handleAccountPress}
             />
 
             <SwiperContainer
@@ -148,7 +119,7 @@ export default function HomeScreen() {
             <Animated.ScrollView
                 contentContainerStyle={styles.contentContainer}
                 onScroll={Animated.event(
-                    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                    [{nativeEvent: {contentOffset: {y: scrollY}}}],
                     {
                         useNativeDriver: true,
                         listener: handleScroll
@@ -180,7 +151,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff',
-        marginHorizontal: 2,
     },
     contentContainer: {
         flexGrow: 1,

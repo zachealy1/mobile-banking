@@ -120,12 +120,22 @@ export default function HomeScreen() {
         setFilter(prevFilter => prevFilter === 'outgoing' ? 'all' : 'outgoing');
     };
 
+    const handleChatPress = () => {
+        console.log('Chat');
+    };
+
+    const handleAccountPress = () => {
+        console.log('Account');
+    };
+
     return (
         <View style={styles.container}>
             <MenuContainer
                 currencyTitleOpacity={currencyTitleOpacity}
                 currentCurrency={currentCurrency}
                 borderOpacity={borderOpacity}
+                chat={handleChatPress}
+                account={handleAccountPress}
             />
 
             <SwiperContainer

@@ -9,21 +9,21 @@ interface MenuContainerProps {
     currentCurrency: string;
     borderOpacity: Animated.Value;
     chat: () => void;
-    onMoneyOut: () => void;
+    account: () => void;
 }
 
-const MenuContainer: React.FC<MenuContainerProps> = ({ currencyTitleOpacity, currentCurrency, borderOpacity }) => {
+const MenuContainer: React.FC<MenuContainerProps> = ({ currencyTitleOpacity, currentCurrency, borderOpacity, account, chat }) => {
     const width = Dimensions.get('window').width;
 
     return (
         <View style={styles.menuContainer}>
-            <TouchableOpacity style={styles.menuButton}>
+            <TouchableOpacity style={styles.menuButton} onPress={account}>
                 <ThemedText style={styles.buttonText}>A</ThemedText>
             </TouchableOpacity>
             <Animated.Text style={[styles.currencyTitle, { opacity: currencyTitleOpacity }]}>
                 {currentCurrency} - {currencyFullNames[currentCurrency as keyof typeof currencyFullNames]}
             </Animated.Text>
-            <TouchableOpacity style={styles.menuButton}>
+            <TouchableOpacity style={styles.menuButton} onPress={chat}>
                 <ThemedText style={styles.buttonText}>C</ThemedText>
             </TouchableOpacity>
 

@@ -25,7 +25,8 @@ export default function StatementsList({ statementOpacity, searchTerm }: Stateme
         const matchesDate = statement.date.includes(searchTerm);
         const matchesCurrency = statement.currency.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesId = statement.id.includes(searchTerm);
-        return matchesDate || matchesCurrency || matchesId;
+        const matchesDescription = statement.description.includes(searchTerm);
+        return matchesDate || matchesCurrency || matchesId || matchesDescription;
     });
 
     return (

@@ -24,9 +24,9 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
-                name="statements"
+                name="documents"
                 options={{
-                    title: 'Statements',
+                    title: 'Documents',
                     tabBarIcon: ({ color, focused }) => (
                         <TabBarIcon name={focused ? 'document' : 'document-outline'} color={color} />
                     ),

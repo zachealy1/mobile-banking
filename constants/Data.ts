@@ -101,3 +101,76 @@ export const statementsData = [
     { id: '27', date: '2023-04-01', description: 'Statement for April 2023', clicked: false, currency: 'GBP' },
 ];
 
+export const messagesData = [
+    {
+        id: '1',
+        date: '2024-11-01',
+        sender: 'Alice Johnson',
+        content: 'Hey, are we still on for the meeting tomorrow?',
+        clicked: false
+    },
+    {
+        id: '2',
+        date: '2024-10-29',
+        sender: 'Bob Smith',
+        content: 'Just sent over the latest report. Let me know if you need anything else.',
+        clicked: false
+    },
+    {
+        id: '3',
+        date: '2024-10-20',
+        sender: 'Charlie Brown',
+        content: 'Can you review the document I shared? It needs some changes.',
+        clicked: false
+    },
+    {
+        id: '4',
+        date: '2024-10-15',
+        sender: 'Diana Prince',
+        content: 'Happy Birthday! Hope you have an amazing day!',
+        clicked: true
+    },
+    {
+        id: '5',
+        date: '2024-10-05',
+        sender: 'Evan Green',
+        content: 'Reminder: Project deadline is approaching. Let’s make sure everything is ready.',
+        clicked: false
+    },
+    {
+        id: '6',
+        date: '2024-09-28',
+        sender: 'Fiona White',
+        content: 'Quick question about the budget proposal you submitted.',
+        clicked: true
+    },
+    {
+        id: '7',
+        date: '2024-09-10',
+        sender: 'George Lee',
+        content: 'I’ll be out of office next week. Please reach out to Sarah for any urgent matters.',
+        clicked: false
+    },
+    {
+        id: '8',
+        date: '2024-08-25',
+        sender: 'Hannah Brown',
+        content: 'Congratulations on the promotion!',
+        clicked: true
+    },
+    {
+        id: '9',
+        date: '2024-08-12',
+        sender: 'Ivy Chen',
+        content: 'Can we reschedule our meeting to next Thursday?',
+        clicked: false
+    },
+    {
+        id: '10',
+        date: '2024-07-30',
+        sender: 'Jack Wilson',
+        content: 'Thanks for your help with the project. Great work!',
+        clicked: true
+    },
+];
+

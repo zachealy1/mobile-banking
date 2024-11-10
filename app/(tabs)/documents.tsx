@@ -2,8 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, View, Animated, TextInput, ScrollView, TouchableOpacity, Text } from 'react-native';
 
 import MenuContainer from "@/components/Menu";
-import StatementsList from "@/components/StatementList";
-import MessagesList from "@/components/MessageList"; // Assume MessagesList exists
+import StatementsList from "@/components/documents/StatementList";
+import MessagesList from "@/components/documents/MessageList"; // Assume MessagesList exists
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 

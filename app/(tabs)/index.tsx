@@ -1,10 +1,10 @@
 import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
 import {View, Animated} from 'react-native';
 import {ThemedText} from '@/components/ThemedText';
-import SwiperContainer from '@/components/Carousel';
+import SwiperContainer from '@/components/index/Carousel';
 import MenuContainer from '@/components/Menu';
-import HomeTabButtonsContainer from '@/components/HomeTabButtons';
-import TransactionList from '@/components/TransactionList';
+import HomeTabButtonsContainer from '@/components/index/HomeTabButtons';
+import TransactionList from '@/components/index/TransactionList';
 import {transactionsItems, currencyFullNames, currencyItems} from '@/constants/Data';
 import {currencyCode} from '@/types/currencyCode';
 import {StyleSheet} from 'react-native';

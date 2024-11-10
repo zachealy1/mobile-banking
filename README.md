@@ -1,14 +1,26 @@
-# Welcome to your Expo app 👋
+# Welcome to this Mobile Banking App 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a cross-platform online banking app built with [Expo](https://expo.dev), created to provide users with secure access to their financial accounts, transactions, and communication with their bank.
 
-## Get started
+## Features
 
-1. Install dependencies
+- View and manage monthly statements
+- Access secure messages from your bank
+- Perform transactions and manage accounts
+- Track spending and monitor account activity
+- Intuitive design with fast, responsive navigation
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have Node.js and npm installed. You'll also need the Expo CLI.
+
+1. **Install dependencies**
 
    ```bash
    npm install
-   ```
+    ```
 
 2. Start the app
 

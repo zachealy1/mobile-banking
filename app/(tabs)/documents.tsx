@@ -45,7 +45,7 @@ export default function HomeScreen() {
             <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.searchBox}
-                    placeholder="Search by date, currency, or ID"
+                    placeholder="Search by date, amount, or keywords"
                     placeholderTextColor="#999"
                     value={searchTerm}
                     onChangeText={setSearchTerm}
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         padding: 16,
         paddingTop: 10,
-        paddingBottom: -80, 
+        paddingBottom: -80,
         backgroundColor: '#ffffff',
     },
 });

@@ -42,11 +42,11 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
-                name="settings"
+                name="more" // Update the screen name if needed
                 options={{
-                    title: 'Settings',
+                    title: 'More',  // Change title to 'More'
                     tabBarIcon: ({ color, focused }) => (
-                        <TabBarIcon name={focused ? 'settings' : 'settings-outline'} color={color} />
+                        <TabBarIcon name={focused ? 'ellipsis-horizontal' : 'ellipsis-horizontal-outline'} color={color} />  // Change icon to a suitable 'More' icon
                     ),
                 }}
             />

@@ -33,11 +33,11 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
-                name="help"
+                name="spending"  // Update the screen name if the route is renamed to 'spending'
                 options={{
-                    title: 'Help',
+                    title: 'Spending',  // Update the title to 'Spending'
                     tabBarIcon: ({ color, focused }) => (
-                        <TabBarIcon name={focused ? 'help' : 'help-outline'} color={color} />
+                        <TabBarIcon name={focused ? 'wallet' : 'wallet-outline'} color={color} />  // Use an appropriate icon for spending
                     ),
                 }}
             />
@@ -53,4 +53,3 @@ export default function TabLayout() {
         </Tabs>
     );
 }
-

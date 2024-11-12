@@ -7,9 +7,14 @@ import MessagesList from "@/components/documents/MessageList"; // Assume Message
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 
+// Create an Animated ScrollView component with direct access to scrollTo
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
 export default function HomeScreen() {
+    const DOCUMENTS = "Documents";
+    const STATEMENTS = "Statements";
+    const MESSAGES = "Messages";
+
     const statementTitleOpacity = useRef(new Animated.Value(1)).current;
     const searchBorderOpacity = useRef(new Animated.Value(0)).current;
     const menuBorderOpacity = useRef(new Animated.Value(0)).current;
@@ -17,7 +22,7 @@ export default function HomeScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
     const scrollViewRef = useRef<ScrollView>(null);
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedTab, setSelectedTab] = useState('Statements');
+    const [selectedTab, setSelectedTab] = useState(STATEMENTS);
 
     const { handleScroll } = useScrollAnimation(searchBorderOpacity);
 
@@ -31,10 +36,10 @@ export default function HomeScreen() {
         <View style={styles.container}>
             <MenuContainer
                 titleOpacity={statementTitleOpacity}
-                title={"Statements"}
+                title={DOCUMENTS}
                 borderOpacity={menuBorderOpacity}
-                onChatPress={handleAccountPress}
-                onAccountPress={handleChatPress}
+                onChatPress={handleChatPress}
+                onAccountPress={handleAccountPress}
             />
 
             <View style={styles.searchContainer}>
@@ -47,7 +52,6 @@ export default function HomeScreen() {
                 />
             </View>
 
-            {/* Animated border aligned with the bottom of searchContainer */}
             <Animated.View style={[styles.animatedBorder, { opacity: searchBorderOpacity }]} />
 
             <AnimatedScrollView
@@ -65,19 +69,26 @@ export default function HomeScreen() {
             >
                 <View style={styles.toggleMenu}>
                     <TouchableOpacity
-                        style={[styles.toggleButton, selectedTab === 'Statements' && styles.activeButton]}
-                        onPress={() => setSelectedTab('Statements')}
+                        style={styles.toggleButton}
+                        onPress={() => setSelectedTab(STATEMENTS)}
                     >
-                        <Text style={styles.toggleButtonText}>Statements</Text>
+                        <Text style={[styles.toggleButtonText, selectedTab === STATEMENTS && styles.activeText]}>
+                            Statements
+                        </Text>
+                        {selectedTab === STATEMENTS && <View style={styles.activeUnderline} />}
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[styles.toggleButton, selectedTab === 'Messages' && styles.activeButton]}
-                        onPress={() => setSelectedTab('Messages')}
+                        style={styles.toggleButton}
+                        onPress={() => setSelectedTab(MESSAGES)}
                     >
-                        <Text style={styles.toggleButtonText}>Messages</Text>
+                        <Text style={[styles.toggleButtonText, selectedTab === MESSAGES && styles.activeText]}>
+                            Messages
+                        </Text>
+                        {selectedTab === MESSAGES && <View style={styles.activeUnderline} />}
                     </TouchableOpacity>
                 </View>
-                {selectedTab === 'Statements' ? (
+
+                {selectedTab === STATEMENTS ? (
                     <StatementsList
                         statementOpacity={documentsOpacity}
                         searchTerm={searchTerm}
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
     },
     searchContainer: {
         paddingTop: 110,
-        marginBottom: 10,
+        marginBottom: 15,
         paddingHorizontal: 16,
         backgroundColor: '#ffffff',
     },
@@ -117,28 +128,37 @@ const styles = StyleSheet.create({
     },
     toggleMenu: {
         flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 0,
+        justifyContent: 'space-around',
+        marginTop: -15,
         marginBottom: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ddd',
     },
     toggleButton: {
+        alignItems: 'center',
         paddingVertical: 10,
-        paddingHorizontal: 20,
-        marginHorizontal: 5,
-        borderRadius: 10,
-        backgroundColor: '#e0e0e0',
-    },
-    activeButton: {
-        backgroundColor: '#007BFF',
+        flex: 1,
     },
     toggleButtonText: {
-        color: '#333',
         fontSize: 16,
+        color: '#666',
+    },
+    activeText: {
+        fontWeight: 'bold',
+        color: '#333',
+    },
+    activeUnderline: {
+        width: '100%',
+        height: 2,
+        backgroundColor: '#007BFF',
+        position: 'absolute',
+        bottom: -1,
     },
     contentContainer: {
         flexGrow: 1,
         padding: 16,
         paddingTop: 10,
+        paddingBottom: -80, 
         backgroundColor: '#ffffff',
     },
 });

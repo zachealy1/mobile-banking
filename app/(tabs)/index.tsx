@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
 import {View, Animated} from 'react-native';
 import {ThemedText} from '@/components/ThemedText';
-import SwiperContainer from '@/components/index/Carousel';
+import Swiper from '@/components/index/Swiper';
 import MenuContainer from '@/components/Menu';
 import HomeTabButtonsContainer from '@/components/index/HomeTabButtons';
 import TransactionList from '@/components/index/TransactionList';
@@ -15,8 +15,7 @@ export default function HomeScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
     const transactionOpacity = useRef(new Animated.Value(1)).current;
     const currencyTitleOpacity = useRef(new Animated.Value(1)).current;
-
-    // Memoized swiperTranslateY to avoid recalculation
+    
     const swiperTranslateY = useMemo(() => scrollY.interpolate({
         inputRange: [0, 350],
         outputRange: [0, -350],
@@ -25,7 +24,7 @@ export default function HomeScreen() {
 
     const [currentCurrency, setCurrentCurrency] = useState<currencyCode>('GBP');
     const [currentTransactions, setCurrentTransactions] = useState(transactionsItems['GBP']);
-    const [filter, setFilter] = useState<'all' | 'incoming' | 'outgoing'>('all'); // Add filter state
+    const [filter, setFilter] = useState<'all' | 'incoming' | 'outgoing'>('all');
 
     const borderOpacity = useRef(new Animated.Value(0)).current;
 
@@ -109,7 +108,7 @@ export default function HomeScreen() {
                 onAccountPress={handleAccountPress}
             />
 
-            <SwiperContainer
+            <Swiper
                 swiperTranslateY={swiperTranslateY}
                 handleSnapToItem={handleSnapToItem}
                 onSlideDrag={onSlideDrag}

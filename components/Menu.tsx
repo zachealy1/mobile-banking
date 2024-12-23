@@ -11,7 +11,7 @@ interface MenuContainerProps {
     onChatPress: () => void;
 }
 
-const MenuContainer: React.FC<MenuContainerProps> = ({ titleOpacity, title, borderOpacity, onAccountPress, onChatPress }) => {
+const Menu: React.FC<MenuContainerProps> = ({ titleOpacity, title, borderOpacity, onAccountPress, onChatPress }) => {
     return (
         <View style={styles.menuContainer}>
             <TouchableOpacity style={styles.menuButton} onPress={onAccountPress}>
@@ -29,8 +29,6 @@ const MenuContainer: React.FC<MenuContainerProps> = ({ titleOpacity, title, bord
         </View>
     );
 };
-
-export default MenuContainer;
 
 const styles = StyleSheet.create({
     menuContainer: {
@@ -76,3 +74,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
+
+export default Menu;

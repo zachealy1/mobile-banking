@@ -9,7 +9,7 @@ interface MessagesListProps {
     searchTerm: string;
 }
 
-export default function MessagesList({ messageOpacity, searchTerm }: MessagesListProps) {
+function MessagesList({ messageOpacity, searchTerm }: MessagesListProps) {
     const [messages, setMessages] = useState(messagesData);
 
     const handleMessageClick = (id: string) => {
@@ -100,3 +100,5 @@ const styles = StyleSheet.create({
         marginLeft: 8,
     },
 });
+
+export default MessagesList;

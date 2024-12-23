@@ -2,12 +2,12 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 
-interface HomeTabButtonsContainerProps {
+interface HomeTabButtonsProps {
     onMoneyIn: () => void;
     onMoneyOut: () => void;
 }
 
-const HomeTabButtonsContainer: React.FC<HomeTabButtonsContainerProps> = ({ onMoneyIn, onMoneyOut }) => {
+const HomeTabButtons: React.FC<HomeTabButtonsProps> = ({ onMoneyIn, onMoneyOut }) => {
     return (
         <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={onMoneyOut}>
@@ -19,8 +19,6 @@ const HomeTabButtonsContainer: React.FC<HomeTabButtonsContainerProps> = ({ onMon
         </View>
     );
 };
-
-export default HomeTabButtonsContainer;
 
 const styles = StyleSheet.create({
     buttonContainer: {
@@ -40,3 +38,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
 });
+
+export default HomeTabButtons;

@@ -5,14 +5,14 @@ import { ThemedText } from '@/components/ThemedText';
 import { currencyItems } from '@/constants/Data';
 import { StyleSheet } from 'react-native';
 
-interface SwiperContainerProps {
+interface SwiperProps {
     swiperTranslateY: Animated.AnimatedInterpolation<any>;
     handleSnapToItem: (index: number) => void;
     onSlideDrag: (progress: number, absoluteProgress: number) => void;
     scrollY: Animated.Value;
 }
 
-const SwiperContainer: React.FC<SwiperContainerProps> = ({ swiperTranslateY, handleSnapToItem, onSlideDrag }) => {
+const Swiper: React.FC<SwiperProps> = ({ swiperTranslateY, handleSnapToItem, onSlideDrag }) => {
     const width = Dimensions.get('window').width;
 
     return (
@@ -48,8 +48,6 @@ const SwiperContainer: React.FC<SwiperContainerProps> = ({ swiperTranslateY, han
     );
 };
 
-export default SwiperContainer;
-
 const styles = StyleSheet.create({
     swiperContainer: {
         position: 'absolute',
@@ -84,3 +82,5 @@ const styles = StyleSheet.create({
         lineHeight: 40,
     },
 });
+
+export default Swiper;

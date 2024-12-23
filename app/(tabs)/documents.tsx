@@ -2,15 +2,14 @@ import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, View, Animated, TextInput, ScrollView, TouchableOpacity, Text } from 'react-native';
 
 import MenuContainer from "@/components/Menu";
-import StatementsList from "@/components/documents/StatementList";
-import MessagesList from "@/components/documents/MessageList"; // Assume MessagesList exists
+import StatementsList from "@/components/documents/StatementsList";
+import MessagesList from "@/components/documents/MessagesList";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 
-// Create an Animated ScrollView component with direct access to scrollTo
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
-export default function HomeScreen() {
+export default function DocumentsScreen() {
     const DOCUMENTS = "Documents";
     const STATEMENTS = "Statements";
     const MESSAGES = "Messages";

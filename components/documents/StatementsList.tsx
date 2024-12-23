@@ -9,7 +9,7 @@ interface StatementsListProps {
     searchTerm: string; // Add searchTerm prop
 }
 
-export default function StatementsList({ statementOpacity, searchTerm }: StatementsListProps) {
+function StatementsList({ statementOpacity, searchTerm }: StatementsListProps) {
     const [statements, setStatements] = useState(statementsData);
 
     const handleStatementClick = (id: string) => {
@@ -100,3 +100,5 @@ const styles = StyleSheet.create({
         marginLeft: 8,
     },
 });
+
+export default StatementsList;

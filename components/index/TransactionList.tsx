@@ -11,7 +11,7 @@ interface TransactionListProps {
     filter: 'all' | 'incoming' | 'outgoing'; // Add filter prop
 }
 
-export default function TransactionList({ currentTransactions, transactionOpacity, filter }: TransactionListProps) {
+function TransactionList({ currentTransactions, transactionOpacity, filter }: TransactionListProps) {
     const filteredTransactions = filter === 'incoming'
         ? currentTransactions.filter(transaction => transaction.amount.startsWith('+'))
         : filter === 'outgoing'
@@ -83,3 +83,5 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
 });
+
+export default TransactionList;

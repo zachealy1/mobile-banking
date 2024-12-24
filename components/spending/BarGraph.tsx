@@ -20,7 +20,7 @@ const BarGraph = () => {
             <BarChart
                 data={data}
                 width={screenWidth - 32}
-                height={280}
+                height={220}
                 yAxisLabel="£"
                 yAxisSuffix=""
                 chartConfig={{
@@ -33,8 +33,17 @@ const BarGraph = () => {
                     style: {
                         borderRadius: 8,
                     },
+                    propsForLabels: {
+                        fontSize: 10,
+                    },
+                    propsForVerticalLabels: {
+                        fontSize: 10,
+                    },
+                    propsForHorizontalLabels: {
+                        fontSize: 10,
+                    },
                 }}
-                verticalLabelRotation={30}
+                verticalLabelRotation={0}
                 style={{
                     marginVertical: 8,
                     borderRadius: 8,

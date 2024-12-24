@@ -174,3 +174,15 @@ export const messagesData = [
     },
 ];
 
+export const spendingData = [
+    { name: 'Category A', population: 40, color: '#F00', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Category B', population: 30, color: '#0F0', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Category C', population: 20, color: '#00F', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Category D', population: 10, color: '#FF0', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+];
+
+export const vendorData = {
+    labels: ["Amazon", "Walmart", "Starbucks", "Apple", "Costco", "Netflix"],
+    values: [150, 120, 90, 200, 100, 50],
+};
+

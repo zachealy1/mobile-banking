@@ -1,22 +1,27 @@
 import React from 'react';
-import { View, Dimensions, Animated } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 import { ThemedText } from '@/components/ThemedText';
 import { currencyItems } from '@/constants/Data';
 import { StyleSheet } from 'react-native';
+import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 
 interface SwiperProps {
-    swiperTranslateY: Animated.AnimatedInterpolation<any>;
     handleSnapToItem: (index: number) => void;
     onSlideDrag: (progress: number, absoluteProgress: number) => void;
-    scrollY: Animated.Value;
 }
 
-const Swiper: React.FC<SwiperProps> = ({ swiperTranslateY, handleSnapToItem, onSlideDrag }) => {
+const Swiper: React.FC<SwiperProps> = ({ handleSnapToItem, onSlideDrag }) => {
     const width = Dimensions.get('window').width;
 
+    const translateY = useSharedValue(0);
+
+    const animatedStyle = useAnimatedStyle(() => ({
+        transform: [{ translateY: withSpring(translateY.value) }],
+    }));
+
     return (
-        <Animated.View style={[styles.swiperContainer, { transform: [{ translateY: swiperTranslateY }] }]}>
+        <View style={[styles.swiperContainer, animatedStyle]}>
             <Carousel
                 loop={false}
                 width={width}
@@ -44,7 +49,7 @@ const Swiper: React.FC<SwiperProps> = ({ swiperTranslateY, handleSnapToItem, onS
                     </View>
                 )}
             />
-        </Animated.View>
+        </View>
     );
 };
 

@@ -22,7 +22,7 @@ Ensure you have Node.js and npm installed. You'll also need the Expo CLI.
    npm install
     ```
 
-2. Start the app
+2. **Start the app**
 
    ```bash
     npx expo start

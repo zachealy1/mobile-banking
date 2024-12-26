@@ -182,7 +182,10 @@ export const spendingData = [
 ];
 
 export const vendorData = {
-    labels: ["Amazon", "Walmart", "Starbucks", "Apple", "Costco", "Netflix"],
-    values: [150, 120, 90, 200, 100, 50],
+    labels: [
+        "Amazon", "Walmart", "Starbucks", "Apple", "Costco", "Netflix",
+        "Target", "eBay", "Home Depot", "Microsoft", "Google", "Tesla"
+    ],
+    values: [150, 120, 90, 200, 100, 50, 130, 95, 160, 180, 210, 140],
 };
 

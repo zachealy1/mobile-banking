@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, StyleSheet } from 'react-native';
+import {Dimensions, StyleSheet, ScrollView} from 'react-native';
 import { vendorData } from '@/constants/Data';
 import { BarChart } from "react-native-chart-kit";
 
@@ -15,11 +15,13 @@ const BarGraph = () => {
         ],
     };
 
+    const chartWidth = data.labels.length * 80;
+
     return (
-        <View style={styles.container}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <BarChart
                 data={data}
-                width={screenWidth - 32}
+                width={chartWidth}
                 height={220}
                 yAxisLabel="£"
                 yAxisSuffix=""
@@ -49,7 +51,7 @@ const BarGraph = () => {
                     borderRadius: 8,
                 }}
             />
-        </View>
+        </ScrollView>
     );
 };
 

@@ -15,8 +15,7 @@ export default function HomeScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
     const transactionOpacity = useRef(new Animated.Value(1)).current;
     const currencyTitleOpacity = useRef(new Animated.Value(1)).current;
-    
-    const swiperTranslateY = useMemo(() => scrollY.interpolate({
+    useMemo(() => scrollY.interpolate({
         inputRange: [0, 350],
         outputRange: [0, -350],
         extrapolate: 'clamp',
@@ -109,10 +108,8 @@ export default function HomeScreen() {
             />
 
             <Swiper
-                swiperTranslateY={swiperTranslateY}
                 handleSnapToItem={handleSnapToItem}
                 onSlideDrag={onSlideDrag}
-                scrollY={scrollY}
             />
 
             <Animated.ScrollView

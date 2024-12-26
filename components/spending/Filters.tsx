@@ -3,6 +3,15 @@ import { View, StyleSheet } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 const Filters: React.FC = () => {
+    const [incomeOutgoingsOpen, setIncomeOutgoingsOpen] = useState(false);
+    const [incomeOutgoingsValue, setIncomeOutgoingsValue] = useState("income");
+    const [incomeOutgoingsItems, setIncomeOutgoingsItems] = useState([
+        { label: "Income", value: "income" },
+        { label: "Outgoings", value: "outgoings" },
+        { label: "Monthly", value: "monthly" },
+        { label: "Annually", value: "annually" },
+    ]);
+
     const [timeScaleOpen, setTimeScaleOpen] = useState(false);
     const [timeScaleValue, setTimeScaleValue] = useState("daily");
     const [timeScaleItems, setTimeScaleItems] = useState([
@@ -32,6 +41,18 @@ const Filters: React.FC = () => {
 
     return (
         <View style={styles.filterContainer}>
+            {/* Income/Outgoings Filter */}
+            <DropDownPicker
+                open={incomeOutgoingsOpen}
+                value={incomeOutgoingsValue}
+                items={incomeOutgoingsItems}
+                setOpen={setIncomeOutgoingsOpen}
+                setValue={setIncomeOutgoingsValue}
+                setItems={setIncomeOutgoingsItems}
+                placeholder="Select Time Scale"
+                containerStyle={styles.dropdownContainer}
+            />
+
             {/* Time Scale Filter */}
             <DropDownPicker
                 open={timeScaleOpen}
@@ -76,11 +97,11 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         marginTop: 110,
-        marginBottom: 20,
+        marginBottom: 15,
         marginHorizontal: 5,
     },
     dropdownContainer: {
-        width: "30%",
+        width: "23%",
     },
 });
 

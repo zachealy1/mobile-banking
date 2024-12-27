@@ -1,29 +1,34 @@
 import React from 'react';
-import {Dimensions, StyleSheet, ScrollView} from 'react-native';
-import { vendorData } from '@/constants/Data';
+import { Dimensions, StyleSheet, ScrollView } from 'react-native';
 import { BarChart } from "react-native-chart-kit";
 
-const BarGraph = () => {
+interface BarGraphProps {
+    filters: {
+        incomeOutgoings: string;
+        timeScale: string;
+        currency: string;
+        category: string;
+    };
+    vendorData: {
+        labels: string[];
+        datasets: {
+            data: number[];
+        }[];
+    };
+}
+
+const BarGraph: React.FC<BarGraphProps> = ({ filters, vendorData }) => {
     const screenWidth = Dimensions.get('window').width;
 
-    const data = {
-        labels: vendorData.labels,
-        datasets: [
-            {
-                data: vendorData.values,
-            },
-        ],
-    };
-
-    const chartWidth = data.labels.length * 80;
+    const chartWidth = vendorData.labels.length * 80;
 
     return (
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <BarChart
-                data={data}
+                data={vendorData}
                 width={chartWidth}
                 height={220}
-                yAxisLabel="£"
+                yAxisLabel={filters.currency === "GBP" ? "£" : filters.currency === "USD" ? "$" : "€"}
                 yAxisSuffix=""
                 chartConfig={{
                     backgroundColor: "#ffffff",

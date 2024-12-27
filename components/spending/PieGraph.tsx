@@ -1,15 +1,22 @@
 import React from 'react';
-import {View, Dimensions, StyleSheet} from 'react-native';
-import {spendingData} from '@/constants/Data';
-import {PieChart} from "react-native-chart-kit";
+import { View, Dimensions, StyleSheet } from 'react-native';
+import { PieChart } from "react-native-chart-kit";
 
-const PieGraph = () => {
+interface PieGraphProps {
+    spendingData: {
+        name: string;
+        population: number;
+        color: string;
+        legendFontColor: string;
+        legendFontSize: number;
+    }[];
+}
 
+const PieGraph: React.FC<PieGraphProps> = ({ spendingData }) => {
     const width = Dimensions.get('window').width;
 
     return (
         <View style={styles.container}>
-
             <PieChart
                 data={spendingData}
                 width={width - 32}
@@ -22,7 +29,6 @@ const PieGraph = () => {
                 paddingLeft="0"
                 absolute
             />
-
         </View>
     );
 };

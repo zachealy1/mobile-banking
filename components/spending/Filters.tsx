@@ -1,43 +1,56 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import {StyleSheet, View} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
-const Filters: React.FC = () => {
+interface FiltersProps {
+    onFilterChange: (filterName: keyof FiltersState, value: string) => void;
+}
+
+interface FiltersState {
+    incomeOutgoings: string;
+    timeScale: string;
+    currency: string;
+    category: string;
+}
+
+const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
     const [incomeOutgoingsOpen, setIncomeOutgoingsOpen] = useState(false);
-    const [incomeOutgoingsValue, setIncomeOutgoingsValue] = useState("income");
-    const [incomeOutgoingsItems, setIncomeOutgoingsItems] = useState([
+    const [incomeOutgoingsValue, setIncomeOutgoingsValue] = useState("outgoing");
+    const incomeOutgoingsItems = [
         { label: "Income", value: "income" },
-        { label: "Outgoings", value: "outgoings" },
-        { label: "Monthly", value: "monthly" },
-        { label: "Annually", value: "annually" },
-    ]);
+        { label: "Outgoing", value: "outgoing" },
+    ];
 
     const [timeScaleOpen, setTimeScaleOpen] = useState(false);
     const [timeScaleValue, setTimeScaleValue] = useState("daily");
-    const [timeScaleItems, setTimeScaleItems] = useState([
+    const timeScaleItems = [
         { label: "Daily", value: "daily" },
         { label: "Weekly", value: "weekly" },
         { label: "Monthly", value: "monthly" },
         { label: "Annually", value: "annually" },
-    ]);
+    ];
 
     const [currencyOpen, setCurrencyOpen] = useState(false);
     const [currencyValue, setCurrencyValue] = useState("GBP");
-    const [currencyItems, setCurrencyItems] = useState([
+    const currencyItems = [
         { label: "USD", value: "USD" },
         { label: "EUR", value: "EUR" },
         { label: "GBP", value: "GBP" },
-    ]);
+    ];
 
     const [categoryOpen, setCategoryOpen] = useState(false);
     const [categoryValue, setCategoryValue] = useState("all");
-    const [categoryItems, setCategoryItems] = useState([
+    const categoryItems = [
         { label: "All", value: "all" },
         { label: "Food & Dining", value: "food" },
         { label: "Shopping", value: "shopping" },
         { label: "Entertainment", value: "entertainment" },
         { label: "Transportation", value: "transportation" },
-    ]);
+    ];
+
+    const handleFilterUpdate = (filterName: keyof FiltersState, value: string) => {
+        onFilterChange(filterName, value);
+    };
 
     return (
         <View style={styles.filterContainer}>
@@ -47,9 +60,12 @@ const Filters: React.FC = () => {
                 value={incomeOutgoingsValue}
                 items={incomeOutgoingsItems}
                 setOpen={setIncomeOutgoingsOpen}
-                setValue={setIncomeOutgoingsValue}
-                setItems={setIncomeOutgoingsItems}
-                placeholder="Select Time Scale"
+                setValue={(callback) => {
+                    const value = typeof callback === "function" ? callback(incomeOutgoingsValue) : callback;
+                    setIncomeOutgoingsValue(value);
+                    handleFilterUpdate("incomeOutgoings", value);
+                }}
+                placeholder="Income/Outgoing"
                 containerStyle={styles.dropdownContainer}
             />
 
@@ -59,9 +75,12 @@ const Filters: React.FC = () => {
                 value={timeScaleValue}
                 items={timeScaleItems}
                 setOpen={setTimeScaleOpen}
-                setValue={setTimeScaleValue}
-                setItems={setTimeScaleItems}
-                placeholder="Select Time Scale"
+                setValue={(callback) => {
+                    const value = typeof callback === "function" ? callback(timeScaleValue) : callback;
+                    setTimeScaleValue(value);
+                    handleFilterUpdate("timeScale", value);
+                }}
+                placeholder="Time Scale"
                 containerStyle={styles.dropdownContainer}
             />
 
@@ -71,9 +90,12 @@ const Filters: React.FC = () => {
                 value={currencyValue}
                 items={currencyItems}
                 setOpen={setCurrencyOpen}
-                setValue={setCurrencyValue}
-                setItems={setCurrencyItems}
-                placeholder="Select Currency"
+                setValue={(callback) => {
+                    const value = typeof callback === "function" ? callback(currencyValue) : callback;
+                    setCurrencyValue(value);
+                    handleFilterUpdate("currency", value);
+                }}
+                placeholder="Currency"
                 containerStyle={styles.dropdownContainer}
             />
 
@@ -83,9 +105,12 @@ const Filters: React.FC = () => {
                 value={categoryValue}
                 items={categoryItems}
                 setOpen={setCategoryOpen}
-                setValue={setCategoryValue}
-                setItems={setCategoryItems}
-                placeholder="Select Category"
+                setValue={(callback) => {
+                    const value = typeof callback === "function" ? callback(categoryValue) : callback;
+                    setCategoryValue(value);
+                    handleFilterUpdate("category", value);
+                }}
+                placeholder="Category"
                 containerStyle={styles.dropdownContainer}
             />
         </View>

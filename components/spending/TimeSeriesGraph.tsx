@@ -2,20 +2,21 @@ import React from 'react';
 import { Dimensions, View, StyleSheet, ScrollView } from 'react-native';
 import { LineChart } from "react-native-chart-kit";
 
-const TimeSeriesGraph = () => {
+interface TimeSeriesGraphProps {
+    data: {
+        labels: string[];
+        datasets: {
+            data: number[];
+            color?: (opacity: number) => string;
+            strokeWidth?: number;
+        }[];
+    };
+}
+
+const TimeSeriesGraph: React.FC<TimeSeriesGraphProps> = ({ data }) => {
     const screenWidth = Dimensions.get('window').width;
 
-    const data = {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-            {
-                data: [500, 700, 800, 600, 650, 900, 750, 820, 880, 920, 1000, 1100],
-                color: (opacity = 1) => `rgba(0, 123, 255, ${opacity})`,
-                strokeWidth: 2,
-            },
-        ],
-    };
-
+    // Calculate dynamic width based on the number of labels
     const chartWidth = data.labels.length * 80;
 
     return (

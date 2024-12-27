@@ -174,18 +174,82 @@ export const messagesData = [
     },
 ];
 
-export const spendingData = [
+export const spendingDataIncome = [
     { name: 'Category A', population: 40, color: '#F00', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { name: 'Category B', population: 30, color: '#0F0', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { name: 'Category C', population: 20, color: '#00F', legendFontColor: '#7F7F7F', legendFontSize: 15 },
     { name: 'Category D', population: 10, color: '#FF0', legendFontColor: '#7F7F7F', legendFontSize: 15 },
 ];
 
+export const spendingDataOutgoing = [
+    { name: 'Category A', population: 50, color: '#F00', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Category B', population: 30, color: '#0F0', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+    { name: 'Category C', population: 20, color: '#00F', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+];
+
 export const vendorData = {
-    labels: [
-        "Amazon", "Walmart", "Starbucks", "Apple", "Costco", "Netflix",
-        "Target", "eBay", "Home Depot", "Microsoft", "Google", "Tesla"
-    ],
-    values: [150, 120, 90, 200, 100, 50, 130, 95, 160, 180, 210, 140],
+    all: {
+        labels: ["Amazon", "Walmart", "Starbucks", "Apple", "Costco", "Netflix", "Uber", "McDonald's", "Target", "Disney+"],
+        values: [150, 120, 90, 200, 100, 50, 80, 70, 130, 60],
+    },
+    food: {
+        labels: ["Starbucks", "Costa"],
+        values: [90, 70],
+    },
+    shopping: {
+        labels: ["Amazon", "Walmart", "Target"],
+        values: [150, 120, 130],
+    },
+    entertainment: {
+        labels: ["Netflix", "Disney+", "Apple"],
+        values: [50, 60, 200],
+    },
+    transportation: {
+        labels: ["Uber", "Ride"],
+        values: [80, 100],
+    },
 };
 
+export const timeSeriesDataDaily = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    datasets: [
+        {
+            data: [50, 75, 100, 80, 90, 60, 120],
+            color: (opacity = 1) => `rgba(255, 99, 132, ${opacity})`,
+            strokeWidth: 2,
+        },
+    ],
+};
+
+export const timeSeriesDataWeekly = {
+    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+    datasets: [
+        {
+            data: [450, 500, 550, 600],
+            color: (opacity = 1) => `rgba(54, 162, 235, ${opacity})`,
+            strokeWidth: 2,
+        },
+    ],
+};
+
+export const timeSeriesDataMonthly = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [
+        {
+            data: [450, 500, 600, 650, 700, 750, 720, 680, 700, 750, 800, 850],
+            color: (opacity = 1) => `rgba(75, 192, 192, ${opacity})`,
+            strokeWidth: 2,
+        },
+    ],
+};
+
+export const timeSeriesDataAnnually = {
+    labels: ["2019", "2020", "2021", "2022", "2023"],
+    datasets: [
+        {
+            data: [4500, 5200, 6000, 5800, 6300],
+            color: (opacity = 1) => `rgba(153, 102, 255, ${opacity})`,
+            strokeWidth: 2,
+        },
+    ],
+};

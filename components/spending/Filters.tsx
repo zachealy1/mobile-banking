@@ -17,8 +17,8 @@ const Filters: React.FC<FiltersProps> = ({ onFilterChange }) => {
     const [incomeOutgoingsOpen, setIncomeOutgoingsOpen] = useState(false);
     const [incomeOutgoingsValue, setIncomeOutgoingsValue] = useState("outgoing");
     const incomeOutgoingsItems = [
-        { label: "Income", value: "income" },
         { label: "Outgoing", value: "outgoing" },
+        { label: "Income", value: "income" },
     ];
 
     const [timeScaleOpen, setTimeScaleOpen] = useState(false);

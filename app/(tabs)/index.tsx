@@ -123,7 +123,7 @@ export default function HomeScreen() {
                     handleSnapToItem={handleSnapToItem}
                     onSlideDrag={onSlideDrag}
                 />
-                
+
                 <HomeTabButtonsContainer
                     onMoneyIn={handleMoneyInPress}
                     onMoneyOut={handleMoneyOutPress} // Add a handler for "Money Out" if needed

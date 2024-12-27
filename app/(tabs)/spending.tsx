@@ -30,7 +30,7 @@ export default function SpendingScreen() {
 
     // State to manage filter selections
     const [filters, setFilters] = useState<FiltersState>({
-        incomeOutgoings: "income",
+        incomeOutgoings: "outgoing",
         timeScale: "daily",
         currency: "GBP",
         category: "all",

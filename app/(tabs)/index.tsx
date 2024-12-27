@@ -107,11 +107,6 @@ export default function HomeScreen() {
                 onAccountPress={handleAccountPress}
             />
 
-            <Swiper
-                handleSnapToItem={handleSnapToItem}
-                onSlideDrag={onSlideDrag}
-            />
-
             <Animated.ScrollView
                 contentContainerStyle={styles.contentContainer}
                 onScroll={Animated.event(
@@ -124,6 +119,11 @@ export default function HomeScreen() {
                 scrollEventThrottle={10}
                 showsVerticalScrollIndicator={false}
             >
+                <Swiper
+                    handleSnapToItem={handleSnapToItem}
+                    onSlideDrag={onSlideDrag}
+                />
+                
                 <HomeTabButtonsContainer
                     onMoneyIn={handleMoneyInPress}
                     onMoneyOut={handleMoneyOutPress} // Add a handler for "Money Out" if needed

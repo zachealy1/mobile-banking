@@ -1,9 +1,12 @@
-import React, { useMemo, useRef } from "react";
-import { Animated, StyleSheet, View, FlatList, TouchableOpacity, Text } from "react-native";
+import React, {useMemo, useRef} from "react";
+import {Animated, StyleSheet, View, FlatList, TouchableOpacity, Text} from "react-native";
 import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 import MenuContainer from "@/components/Menu";
 import { ThemedText } from "@/components/ThemedText";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import CurrencySelector from "@/components/pay/CurrencySelector";
+import SendReceive from "@/components/pay/SendReceive";
+import QuickSendReceive from "@/components/pay/QuickSendReceive";
 
 const users = [
     { id: "1", name: "Hannah Chen", avatarColor: "#2F80ED" },
@@ -19,7 +22,7 @@ const users = [
 
 const dataWithAddCard = [{ id: "ADD_CARD" }, ...users];
 
-export default function HomeScreen() {
+export default function PayScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
     const currencyTitleOpacity = useRef(new Animated.Value(1)).current;
     const borderOpacity = useRef(new Animated.Value(0)).current;
@@ -53,6 +56,14 @@ export default function HomeScreen() {
                 <Text style={styles.userName}>{item.name}</Text>
             </View>
         );
+    };
+
+    const handleQuickSend = () => {
+        console.log("Quick Send");
+    };
+
+    const handleQuickReceive = () => {
+        console.log("Quick Receive");
     };
 
     return (
@@ -95,6 +106,18 @@ export default function HomeScreen() {
                         contentContainerStyle={styles.userList}
                     />
                 </View>
+
+                <CurrencySelector/>
+
+                <QuickSendReceive
+                    onQuickSend={handleQuickSend}
+                    onQuickReceive={handleQuickReceive}
+                />
+
+                <SendReceive mode={"send"} recipientName={"Hannah"}/>
+
+                <SendReceive mode={"receive"} recipientName={"Hannah"}/>
+
             </Animated.ScrollView>
         </View>
     );
@@ -144,6 +167,7 @@ const styles = StyleSheet.create({
         marginRight: 16,
         backgroundColor: "transparent",
         opacity: 0.7,
+        borderRadius: 10,
     },
     addCardText: {
         fontSize: 36,

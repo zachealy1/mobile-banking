@@ -2,7 +2,6 @@ import { StyleSheet, Animated, View, Text } from "react-native";
 import React, { useRef, useState } from "react";
 
 import MenuContainer from "@/components/Menu";
-import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import PieGraph from "@/components/spending/PieGraph";
 import TimeSeriesGraph from "@/components/spending/TimeSeriesGraph";
@@ -124,8 +123,6 @@ export default function SpendingScreen() {
                 titleOpacity={currencyTitleOpacity}
                 title={"Spending"}
                 borderOpacity={borderOpacity}
-                onChatPress={handleChatPress}
-                onAccountPress={handleAccountPress}
             />
 
             <Animated.FlatList

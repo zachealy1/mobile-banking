@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions, Animated, TouchableOpacity } from 'react-native';
+import { View, Animated, TouchableOpacity } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { StyleSheet } from "react-native";
 
@@ -7,11 +7,18 @@ interface MenuContainerProps {
     titleOpacity: Animated.Value;
     title: string;
     borderOpacity: Animated.Value;
-    onAccountPress: () => void;
-    onChatPress: () => void;
 }
 
-const Menu: React.FC<MenuContainerProps> = ({ titleOpacity, title, borderOpacity, onAccountPress, onChatPress }) => {
+const Menu: React.FC<MenuContainerProps> = ({ titleOpacity, title, borderOpacity }) => {
+
+    const onAccountPress = () => {
+        console.log('Account pressed');
+    }
+
+    const onChatPress = () => {
+        console.log('Chat pressed');
+    }
+
     return (
         <View style={styles.menuContainer}>
             <TouchableOpacity style={styles.menuButton} onPress={onAccountPress}>
@@ -24,7 +31,6 @@ const Menu: React.FC<MenuContainerProps> = ({ titleOpacity, title, borderOpacity
                 <ThemedText style={styles.buttonText}>C</ThemedText>
             </TouchableOpacity>
 
-            {/* Animated border */}
             <Animated.View style={[styles.animatedBorder, { opacity: borderOpacity }]} />
         </View>
     );

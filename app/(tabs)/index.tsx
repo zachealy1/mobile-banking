@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, useCallback, useMemo} from 'react';
+import React, { useEffect, useRef, useState, useCallback, useMemo } from 'react';
 import {View, Animated} from 'react-native';
 import {ThemedText} from '@/components/ThemedText';
 import Swiper from '@/components/index/Swiper';
@@ -6,10 +6,9 @@ import MenuContainer from '@/components/Menu';
 import HomeTabButtonsContainer from '@/components/index/HomeTabButtons';
 import TransactionList from '@/components/index/TransactionList';
 import {transactionsItems, currencyFullNames, currencyItems} from '@/constants/Data';
-import {currencyCode} from '@/types/currencyCode';
-import {StyleSheet} from 'react-native';
-import {useScrollAnimation} from "@/hooks/useScrollAnimation";
-import {handleAccountPress, handleChatPress} from "@/utils/eventHandlers";
+import { currencyCode } from '@/types/currencyCode';
+import { StyleSheet } from 'react-native';
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function HomeScreen() {
     const scrollY = useRef(new Animated.Value(0)).current;
@@ -103,8 +102,6 @@ export default function HomeScreen() {
                 titleOpacity={currencyTitleOpacity}
                 title={`${currentCurrency} - ${currencyFullNames[currentCurrency as keyof typeof currencyFullNames]}`}
                 borderOpacity={borderOpacity}
-                onChatPress={handleChatPress}
-                onAccountPress={handleAccountPress}
             />
 
             <Animated.ScrollView

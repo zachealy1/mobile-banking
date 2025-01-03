@@ -1,6 +1,5 @@
 import React, {useMemo, useRef} from "react";
 import {Animated, StyleSheet, View, FlatList, TouchableOpacity, Text} from "react-native";
-import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 import MenuContainer from "@/components/Menu";
 import { ThemedText } from "@/components/ThemedText";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -72,8 +71,6 @@ export default function PayScreen() {
                 titleOpacity={currencyTitleOpacity}
                 title={"Pay"}
                 borderOpacity={borderOpacity}
-                onChatPress={handleChatPress}
-                onAccountPress={handleAccountPress}
             />
 
             <Animated.ScrollView

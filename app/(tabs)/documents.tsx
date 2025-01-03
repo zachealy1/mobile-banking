@@ -5,7 +5,6 @@ import MenuContainer from "@/components/Menu";
 import StatementsList from "@/components/documents/StatementsList";
 import MessagesList from "@/components/documents/MessagesList";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { handleAccountPress, handleChatPress } from "@/utils/eventHandlers";
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView);
 
@@ -37,8 +36,6 @@ export default function DocumentsScreen() {
                 titleOpacity={statementTitleOpacity}
                 title={DOCUMENTS}
                 borderOpacity={menuBorderOpacity}
-                onChatPress={handleChatPress}
-                onAccountPress={handleAccountPress}
             />
 
             <View style={styles.searchContainer}>
